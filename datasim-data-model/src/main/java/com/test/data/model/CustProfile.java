@@ -8,6 +8,8 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Date;
+
 @Entity
 @Getter
 @Setter
@@ -20,11 +22,20 @@ public class CustProfile {
     private String lastName;
     private String PAN;
     private String passportNo;
+    private Date DOB;
+    private int age;
 
     public CustProfile() {
     }
 
-    public CustProfile(long id, String firstName, String lastName, String PAN, String passportNo) {
+    public void setDOB(Date dob){
+        this.DOB = dob;
+        Date currentDate = new Date(System.currentTimeMillis());
+        this.age = currentDate.toLocalDate().getYear() -
+                this.DOB.toLocalDate().getYear();
+    }
+
+    /*public CustProfile(long id, String firstName, String lastName, String PAN, String passportNo) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -37,5 +48,5 @@ public class CustProfile {
         this.lastName = lastName;
         this.PAN = PAN;
         this.passportNo = passportNo;
-    }
+    }*/
 }

@@ -36,11 +36,15 @@ public class DateTimeGenerator {
         this.uniquenessVerifier = new UniquenessVerifier<>(unique);
         this.timestampUniquenessVerifier = new UniquenessVerifier<>(unique);
         this.timeUniquenessVerifier = new UniquenessVerifier<>(unique);
+        this.rand = new Random();
+        init();
     }
 
     private void init(){
+        System.out.println("Start::" + daysToGobackStart + ".. End::" + daysToGobackEnd);
         this.millisToGoBackStart = daysToGobackStart * 24 * 60 * 60 * 1000L;
         this.getMillisToGoBackEnd = daysToGobackEnd * 24 * 60 * 60 * 1000L;
+        System.out.println("Bound condition met::" + (this.getMillisToGoBackEnd>this.millisToGoBackStart));
     }
 
     private long computeRandTimestampInMillis(){
